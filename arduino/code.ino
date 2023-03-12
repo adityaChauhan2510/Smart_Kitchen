@@ -5,10 +5,10 @@
 #define dht_apin 9 
 #define smokes 0
 
-dht11 DHT;
-String AP = "TP-Link_4E66";       // AP NAME
-String PASS = "wormhole"; // AP PASSWORD
-String API = "OEOBVWS4YRDPUZH9";   // Write API KEY
+DHT11 DHT;
+String AP = "Acess_Point";       // AP NAME
+String PASS = "Pass"; // AP PASSWORD
+String API = "Write_API";   // Write API KEY
 String HOST = "api.thingspeak.com";
 String PORT = "80";
 int countTrueCommand;
@@ -31,7 +31,7 @@ void setup() {
 
 void loop() {
   
- String getData = "GET /update?api_key="+ API +"&field1="+getTemperatureValue()+"&field2="+getHumidityValue();
+ String getData = "GET /update?api_key="+ API +"&field1="+getTemperatureValue()+"&field2="+getHumidityValue()+"&field3="+getSmokeVal()+"&field4="+getGasVal();
  sendCommand("AT+CIPMUX=1",5,"OK");
  sendCommand("AT+CIPSTART=0,\"TCP\",\""+ HOST +"\","+ PORT,15,"OK");
  sendCommand("AT+CIPSEND=0," +String(getData.length()+4),4,">");
